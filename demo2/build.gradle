@@ -1,0 +1,44 @@
+apply plugin: 'groovy'
+apply plugin: 'idea'
+
+repositories {
+  flatDir { dirs '../lib' }
+  maven   { url "https://maven.java.net/content/repositories/releases" }
+  mavenCentral()
+}
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+dependencies {
+  compile 'org.codehaus.groovy:groovy-all:2.2.0-rc-2'
+  compile 'org.glassfish.main.extras:glassfish-embedded-all:4.0'
+
+  ['compile', 'grizzly', 'servlet', 'system-extensions'].each { module ->
+    compile ":avatar-$module:1.0-ea"
+  }
+}
+
+idea {
+  module {
+    sourceDirs += file('src/main/avatar')
+  }
+}
+
+task(prepAvatarCompile, dependsOn: 'classes', type: Copy) {
+  from 'src/main/avatar'
+  into "build/install/${project.name}"
+}
+
+task(compileAvatar, dependsOn: 'prepAvatarCompile', type: JavaExec) {
+  main = "org.glassfish.avatar.admin.CommandLineEE"
+  classpath = sourceSets.main.runtimeClasspath
+  args 'compile', "build/install/${project.name}"
+}
+task(run, dependsOn: 'compileAvatar', type: JavaExec) {
+  main = "com.objectpartners.avatar.Main"
+  classpath = sourceSets.main.runtimeClasspath
+  args "build/install/${project.name}"
+}
+
+defaultTasks 'run'

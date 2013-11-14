@@ -2,9 +2,9 @@
 *.ipr
 *.iws
 *.iml
-*.gradle
 *.git
 build/
 out/
 production/
 classes/
+.gradle/
