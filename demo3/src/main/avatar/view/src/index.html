@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII"/>
+    </head>
+    <body style="text-align: center">
+    <script data-model="local" data-instance="user">
+        var User = function() {
+            this.name = '';
+            this.twitter =  '';
+            this.github = '';
+
+            this.clear = function() {
+                this.name = '';
+                this.twitter = '';
+                this.github = '';
+            };
+
+            this.reset = function(vc) {
+                this.clear();
+                avatar.navigateTo('#landingPage');
+            }
+        };
+    </script>
+
+    <script data-controller="uiController" data-instance="vc">
+        var ViewController = function() {
+            this.onShow = function(node, instance) {
+                if (['accountPage', 'manageProfile'].indexOf(node.id)>-1 && !instance.user.name) {
+                    avatar.navigateTo('#landingPage');
+                }
+            }
+        };
+    </script>
+
+    <div data-widget="view"
+         id="landingPage"
+         data-title="Welcome to My Website!!"
+         data-main="true"
+         data-controller="vc">
+        <h2>Who Are You?</h2>
+        <form>
+            <label for="name">Name: </label>
+            <input id="name" data-value="#{user.name}"><br/>
+            <button id="welcome"
+                    onclick="#{avatar.navigateTo('#accountPage')}">
+                Go To Your Page!</button>
+        </form>
+    </div>
+
+    <div data-widget="view"
+         id="accountPage"
+         data-title="Welcome, #{user.name}!"
+         data-controller="vc">
+        <h2>ZOMG, WELCOME #{user.name}!!</h2>
+        <div>
+            <div>Twitter: #{user.twitter}</div>
+            <div>GitHub: #{user.github}</div>
+        </div>
+        <br/><br/>
+        <h3>Here's some things you can do:</h3>
+        <div>
+            <button onclick="#{avatar.navigateTo('#manageProfile')}">Manage Profile!</button>
+            <br/>
+            <button onclick="#{user.reset()}">Go Away!</button>
+        </div>
+    </div>
+
+    <div data-widget="view"
+         id="manageProfile"
+         data-title="Welcome, #{user.name}!"
+         data-controller="vc">
+        <h2>Managing Profile for #{user.name}!</h2>
+        <form>
+            <label for="twitter">Twitter: </label>
+            <input id="twitter" data-value="#{user.twitter}"><br/>
+            <label for="github">GitHub: </label>
+            <input id="github" data-value="#{user.github}"><br/>
+            <button onclick="#{avatar.navigateTo('#accountPage')}">Save!</button>
+        </form>
+    </div>
+    </body>
+</html>
+
+

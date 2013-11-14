@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Messaging Service</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII"/>
+    </head>
+    <body>
+
+
+        <script data-model="local" data-instance="message">
+            /* World's sickest View Model */
+            var Message = function() {
+                this.content = new Date();
+
+                this.update = function() {
+                    this.content = new Date();
+                };
+            }
+        </script>
+
+        <h1>#{message.content}</h1>
+        <button onclick="#{message.update()}">Update</button>
+
+
+    </body>
+</html>
+
+

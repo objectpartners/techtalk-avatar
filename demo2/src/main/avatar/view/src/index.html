@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Messaging Service</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII"/>
+    </head>
+    <body>
+        <script data-model="rest">
+            var Person = function() {
+                this.name = '';
+
+                this.hello = function() {
+                    return this.name ? "Hello, " + this.name + "!" : "";
+                };
+
+                this.get = function() {
+                    this.$get();
+                    $("#whos-there").hide().promise().done(function() {
+                        $("#name-form").show();
+                    });
+                };
+            }
+        </script>
+        <script data-type="Person"
+                data-instance="person"
+                data-url="rest/person"></script>
+
+
+
+        <script data-model="socket">
+            var HelloMessage = function() {
+                this.name = '';
+
+                this.send = function() {
+                    this.$send(this.name);
+                    this.name = '';
+                    $("#name-form").hide().promise().done(function() {
+                        $("#whos-there").show();
+                    });
+                };
+            }
+        </script>
+
+
+        <script data-type="HelloMessage" data-instance="msg" data-url="websockets/hello"></script>
+
+        <h1>#{person.hello()}</h1>
+
+        <form id="name-form">
+            <label for="name">Introduce yourself! </label>
+            <input id="name" data-value="#{msg.name}"><br/>
+            <button onclick="#{msg.send()}">Say Hi!</button>
+        </form>
+
+        <button id="whos-there"
+                onclick="#{person.get()}">Who's There??</button>
+
+
+    </body>
+</html>
+
+

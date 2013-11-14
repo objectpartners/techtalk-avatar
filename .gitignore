@@ -1,0 +1,10 @@
+*.class
+*.ipr
+*.iws
+*.iml
+*.gradle
+*.git
+build/
+out/
+production/
+classes/
