@@ -16,6 +16,10 @@ All of the demos in this repository are Gradle projects, and the applications ca
 
 :-)
 
+=== Slides
+
+https://github.com/objectpartners/techtalk-avatar/raw/master/slides.pdf[Slides :-)]
+
 === Contact
 
 If you have any questions about the materials in this repository, please feel free to contact us at contact@objectpartners.com
