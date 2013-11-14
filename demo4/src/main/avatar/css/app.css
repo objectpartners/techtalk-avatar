@@ -6,3 +6,32 @@ form label {
     width: 990px;
     margin: 0 auto;
 }
+
+.thead {
+    font-weight: bold;
+    font-size: 22px;
+    border-bottom: 1px dashed #ccc;
+    line-height: 40px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
+ul li {
+    display: inline-block;
+    width: 25%;
+    text-align: center;
+}
+
+ul .row {
+    line-height: 50px;
+}
+
+ul .row:hover {
+    background-color: #e1d9a2;
+}

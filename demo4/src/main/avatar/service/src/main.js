@@ -33,7 +33,7 @@ avatar.registerRestService({ url: 'api/person/{id}'}, function () {
   };
 
   this.$onDelete = function(request, response) {
-    itemsProvider.$delete(this.id, function(result) {
+    personProvider.$delete(this.id, function(result) {
       response.$send(result);
     });
   };
