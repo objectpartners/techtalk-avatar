@@ -1,0 +1,21 @@
+== OPI Tech Talk 11/14/2013
+
+The materials in this repository support the examples from the webinar tech talk
+
+=== Pre-requisites
+
+Java 8 b103 is required in order for the demos in this project to build.
+
+You can download JDK8 b103 https://jdk8.java.net/archive/8-b103.html[here].
+
+=== Running
+
+All of the demos in this repository are Gradle projects, and the applications can be run with the provided gradle wrapper.
+
+`./gradlew`
+
+:-)
+
+=== Contact
+
+If you have any questions about the materials in this repository, please feel free to contact us at contact@objectpartners.com
